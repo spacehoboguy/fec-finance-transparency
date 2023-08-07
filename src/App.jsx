@@ -4,13 +4,20 @@ import axios from 'axios'
 function App() {
   const [data, setData] = useState()
   const VITE_FEC_API_KEY = "UPzWEOVhYptFM46107HjwT0OXVrtDYg9HEYFDwMJ"
-  const endpoint = 'https://api.open.fec.gov/v1/candidates/?party=DEM&api_key=' + VITE_FEC_API_KEY;
+  const endpoint = 'https://api.open.fec.gov/v1/candidates/?candidate_id=P80001571&page=1&api_key=' + VITE_FEC_API_KEY;
  
   useEffect(()=>{
-    axios.get(endpoint)
+    const controller = new AbortController();
+    axios.get(endpoint, {
+      signal: controller.signal
+    })
     .then((response) => setData(response.data))
-    console.log(data)
+   
+    return ()=> {
+      controller.abort()
+    }
   },[])
+  console.log(data)
 
   return (
     <>
