@@ -12,6 +12,7 @@ function App() {
       signal: controller.signal
     })
     .then((response) => setData(response.data))
+    .catch((err)=> console.error("Axios .get() error:", err))
    
     return ()=> {
       controller.abort()
