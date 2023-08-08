@@ -4,7 +4,7 @@ import axios from 'axios'
 function App() {
   const [data, setData] = useState()
   const VITE_FEC_API_KEY = "UPzWEOVhYptFM46107HjwT0OXVrtDYg9HEYFDwMJ"
-  const endpoint = 'https://api.open.fec.gov/v1/candidates/?candidate_id=P80001571&page=1&api_key=' + VITE_FEC_API_KEY;
+  const endpoint = 'https://api.open.fec.gov/v1/presidential/financial_summary/?page=1&per_page=20&candidate_id=P80001571&sort=-net_receipts&sort_hide_null=false&sort_null_only=false&sort_nulls_last=false&api_key=' + VITE_FEC_API_KEY;
  
   useEffect(()=>{
     const controller = new AbortController();
