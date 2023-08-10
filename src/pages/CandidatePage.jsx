@@ -3,7 +3,7 @@ import { Card, Title, Text, Grid } from "@tremor/react";
 
 export default function CandidatePage() {
     return (
-        <main className="">
+        <div className="">
             {/* Main section */}
             <Card className="">
                 <CandidateNameCard />
@@ -16,6 +16,6 @@ export default function CandidatePage() {
                     </Card>
                 </Grid>
             </Card>
-        </main>
+        </div>
     )
 }
