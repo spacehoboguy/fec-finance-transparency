@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        @apply marker:bg-gradient-to-r from-blue-950 from-65% to-100% to-red-600;
+    }
+}
