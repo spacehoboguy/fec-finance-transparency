@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function useGet(url, apiKey) {
+function useGet(url) {
   const [data, setData] = useState([]);
+  const APIKEY = import.meta.env.VITE_API_KEY;
   
   useEffect(() => {
       const controller = new AbortController();
 
-      axios.get(url + apiKey ,{ signal: controller.signal })
+      axios.get(url + APIKEY, { 
+        signal: controller.signal })
       .then(res => {
           res.data && setData(res.data);
       })
@@ -17,7 +19,7 @@ function useGet(url, apiKey) {
       return () => {
         controller.abort();
       }
-  }, [])
+  }, [url])
 
   return { data }
 }

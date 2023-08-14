@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import Search from "../components/Search";
+import SearchInput from "../components/SearchInput";
 import { HiMiniHome } from "react-icons/hi2"
 
 
@@ -14,7 +14,7 @@ export default function ExplorePage() {
           <HiMiniHome/>
         </NavLink>
       <main className="grid">
-        <Search />
+        <SearchInput />
       </main>
     </div>
   )
