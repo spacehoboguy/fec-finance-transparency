@@ -14,8 +14,8 @@ export default function LandingPage() {
         <p className="text-xs w-96">Helping voters explore financial information about United States presidential candidates and committees.</p>
       </div>
       <nav className="flex justify-evenly pt-6">
-      <NavLink to="/explore" className="w-20 text-center border-2 border-black rounded-md hover:border-white hover:bg-black hover:text-white">Explore</NavLink>
-      <NavLink to="/about" className="w-20 text-center border-2 border-black rounded-md hover:border-white hover:bg-black hover:text-white">About</NavLink>
+      <NavLink to="/explore" className="w-20 text-center border-2 border-black rounded-md hover:bg-black hover:text-white">Explore</NavLink>
+      <NavLink to="/about" className="w-20 text-center border-2 border-black rounded-md hover:bg-black hover:text-white">About</NavLink>
       </nav>
       </div>
     </div>
