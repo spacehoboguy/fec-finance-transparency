@@ -2,6 +2,8 @@ import { Route, Routes } from 'react-router-dom';
 import useGet from './hooks/useGet'
 import CandidatePage from './pages/CandidatePage';
 import LandingPage from './pages/LandingPage';
+import ExplorePage from './pages/ExplorePage';
+import About from './pages/About';
 
 
 
@@ -14,6 +16,9 @@ function App() {
     <>
     <Routes >
       <Route path="/" element={<LandingPage/>} />
+      <Route path="/explore" element={<ExplorePage/>} />
+      <Route path="/candidate" element={<CandidatePage/>} />
+      <Route path="/about" element={<About/>} />
     </Routes>
       
     </>
