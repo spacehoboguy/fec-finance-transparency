@@ -1,3 +1,4 @@
+import { Route, Routes } from 'react-router-dom';
 import useGet from './hooks/useGet'
 import CandidatePage from './pages/CandidatePage';
 import LandingPage from './pages/LandingPage';
@@ -11,7 +12,10 @@ function App() {
   //const { data } = useGet(trumpFinanceSummaryUrl, APIKEY);
   return (
     <>
-      <LandingPage/>
+    <Routes >
+      <Route path="/" element={<LandingPage/>} />
+    </Routes>
+      
     </>
   )
 }
