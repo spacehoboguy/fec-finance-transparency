@@ -6,8 +6,7 @@ import useGet from "../hooks/useGet";
 export default function LandingPage() {
   const APIKEY = import.meta.env.VITE_API_KEY;
   const searchRequest = 'https://api.open.fec.gov/v1/names/candidates/?q=donald&api_key=' + APIKEY;
-  const { data } = useGet(searchRequest)
-  console.log(data)
+  //const { data } = useGet(searchRequest)
 
   return (
     <div className="box-border h-screen w-screen" >
@@ -20,8 +19,8 @@ export default function LandingPage() {
           <p className="text-xs w-96">Helping voters explore financial information about United States presidential candidates and committees.</p>
         </div>
         <nav className="flex justify-evenly pt-6">
-          <NavLink to="/explore" className="w-20 text-center border-2 border-black rounded-md hover:bg-black hover:text-white">Explore</NavLink>
-          <NavLink to="/about" className="w-20 text-center border-2 border-black rounded-md hover:bg-black hover:text-white">About</NavLink>
+          <NavLink to="/explore" className="w-20 text-center border-2 border-black rounded-md shadow-md hover:bg-black hover:shadow-none hover:text-white">Explore</NavLink>
+          <NavLink to="/about" className="w-20 text-center border-2 border-black rounded-md shadow-md hover:bg-black hover:shadow-none hover:text-white">About</NavLink>
         </nav>
       </div>
     </div>
