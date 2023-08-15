@@ -19,7 +19,7 @@ function useGet(url) {
       return () => {
         controller.abort();
       }
-  }, [url])
+  }, [])
 
   return { data }
 }

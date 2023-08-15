@@ -11,7 +11,7 @@ function About() {
       <NavLink className="absolute top-0" to="/">
         <HiMiniHome />
       </NavLink>
-      <div className="grid place-content-center">
+      <div className="grid place-content-center pb-5">
         <h2 className="text-center text-lg font-bold pt-10">openPRES</h2>
         <p className="px-60 pb-10 pt-2 font-semibold">
           Our goal is to make browsing and viewing data on United States presidential candidates simple.

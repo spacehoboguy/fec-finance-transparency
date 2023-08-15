@@ -2,9 +2,7 @@ import { useState, useRef } from "react"
 import useGet from "../hooks/useGet"
 
 export default function Search() {
-    const [input, setInput] = useState("")
-    const {data} = useGet('https://api.open.fec.gov/v1/names/candidates/?q=' + input + '&api_key=')
-    console.log(data)
+    const [input, setInput] = useState()
 
     function handleInputChange(e) {
         setInput(e.target.value)
@@ -12,14 +10,9 @@ export default function Search() {
     }
 
     function handleSubmit(e) {
-        e.preventDefault()
-        getCandidates(input);
+
     }
     
-    function getCandidates({input}) {
-        const searchRequestUrl = 'https://api.open.fec.gov/v1/names/candidates/?q=' + input + '&api_key='; 
-    
-    }
     return (
         <div className="grid p-2 place-content-center">
             <form className="flex items-center" onSubmit={handleSubmit}>
