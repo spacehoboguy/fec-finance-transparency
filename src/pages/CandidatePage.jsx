@@ -5,7 +5,7 @@ import { HiArrowUturnLeft } from "react-icons/hi2"
 
 export default function CandidatePage() {
     const { candId } = useParams();
-    const [candidateInfo, setCandidateInfo] = useState([])
+    const [candidateInfo, setCandidateInfo] = useState()
     const [financialSummary, setFinancialSummary] = useState([])
     const APIKEY = import.meta.env.VITE_API_KEY;
 
@@ -57,16 +57,17 @@ console.log(candidateInfo)
                 <NavLink className="top-0" to="/explore">
                     <HiArrowUturnLeft />
                 </NavLink>
-                <h1 className="font-bold">{candidateInfo.name}</h1>
-                <div className='text-xs italic'>{candidateInfo.candidate_id}</div>
+                <h1 className="font-bold">{candidateInfo[0].name}</h1>
+                <div className='text-xs italic'>{candidateInfo[0].candidate_id}</div>
                 <div className="flex ">
-                    <h5 className="text-xs w-32">{candidateInfo.party_full}</h5>
-                    <h5 className="text-xs italic">{candidateInfo.incumbent_challenge_full}</h5>
+                    <h5 className="text-xs w-32">{candidateInfo[0].party_full}</h5>
+                    <h5 className="text-xs italic">{candidateInfo[0].incumbent_challenge_full}</h5>
                 </div>
                 <h5 className="text-xs">Election Cycles: </h5>
-                {candidateInfo.election_years.map((value, index) =>
+                {candidateInfo[0].election_years.map((value, index) =>
                     <li className="list-none text-xs" key={index}>{value}</li>)
                 }
+                <div>Cash on hand: ${financialSummary[0].cash_on_hand_end}</div>
             </div>
             }
         </>
