@@ -80,7 +80,7 @@ export default function Search() {
                         className="outline-none w-80 mb-10 bg-white border-black border-2 rounded-md hover:ring hover:ring-gray-500 focus:ring focus:ring-gray-300 focus:placeholder-transparent"
                         type="text"
                         value={input}
-                        placeholder=" name, id... "
+                        placeholder=" Search by name"
                         onChange={handleInputChange}
                     />
                 </label>
