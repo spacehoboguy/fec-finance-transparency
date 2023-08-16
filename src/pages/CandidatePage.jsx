@@ -51,6 +51,7 @@ export default function CandidatePage() {
     //     }
     // }, [candId])
 console.log(candidateInfo)
+console.log(financialSummary)
     return (
         <>
             {candidateInfo && <div>
