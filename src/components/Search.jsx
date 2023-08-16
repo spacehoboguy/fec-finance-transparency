@@ -9,7 +9,6 @@ export default function Search() {
 
     const APIKEY = import.meta.env.VITE_API_KEY;
     const url = 'https://api.open.fec.gov/v1/names/candidates/?q=' + input + '&api_key=' + APIKEY;
-    console.log(input);
     useEffect(() => {
         //url needs to take input as a variable 
         axios.get(url)
@@ -64,8 +63,6 @@ export default function Search() {
     function handleInputChange(e) {
         const searchInput = e.target.value;
         setInput(searchInput)
-
-        console.log(e.target.value)
     }
 
     function handleSubmit(e) {
@@ -94,7 +91,7 @@ export default function Search() {
                         }).map(p => {
                             return (
                                 <li key={p.id} className="text-sm border-2 m-2 bg-white border-black rounded-md hover:bg-slate-950 hover:text-white hover:cursor-pointer active:ring hover:ring-gray-500">
-                                    <Link>
+                                    <Link to={`/candidate/${p.id}`} candId={p.id}>
                                         <div className="pl-2 font-semibold"> {p.name}</div>
                                         <div className="pl-2">Candidate ID: {p.id}</div>
                                     </Link>
