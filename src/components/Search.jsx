@@ -4,28 +4,31 @@ import { Link } from "react-router-dom"
 
 
 export default function Search() {
-    const [input, setInput] = useState("John")
+    const [input, setInput] = useState("")
     const [searchResult, setSearchResult] = useState([])
-
     const APIKEY = import.meta.env.VITE_API_KEY;
     const url = 'https://api.open.fec.gov/v1/names/candidates/?q=' + input + '&api_key=' + APIKEY;
+    const controller = new AbortController();
+
     useEffect(() => {
-        //url needs to take input as a variable 
-        axios.get(url)
-            .then((res) => {
-                res.data && setSearchResult(res.data.results);
-            })
-            .catch((err) => {
-                if (err.response) {
-                    console.log(err.response.data);
-                    console.log(err.response.status);
-                    console.log(err.response.headers);
-                } else if (err.request) {
-                    console.log(err.request);
-                } else {
-                    console.log('Error', err.message);
-                }
-            })
+        axios.get(url, {
+            signal: controller.signal
+        }).then((res) => {
+            res.data && setSearchResult(res.data.results);
+        }).catch((err) => {
+            if (err.response) {
+                console.log(err.response.data);
+                console.log(err.response.status);
+                console.log(err.response.headers);
+            } else if (err.request) {
+                console.log(err.request);
+            } else {
+                console.log('Error', err.message);
+            }
+        })
+        return () => {
+            controller.abort();
+        }
     }, [url])
 
     let results = [
@@ -61,7 +64,7 @@ export default function Search() {
         }
     ]
     function handleInputChange(e) {
-        const searchInput = e.target.value;
+        let searchInput = e.target.value;
         setInput(searchInput)
     }
 
