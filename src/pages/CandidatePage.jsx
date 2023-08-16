@@ -3,19 +3,15 @@ import { Card, Title, Text, Grid } from "@tremor/react";
 
 export default function CandidatePage() {
     return (
+        //candidate wrapper
         <div className="">
-            {/* Main section */}
-            <Card className="">
-                <CandidateNameCard />
-                <Grid numItemsMd={2} className="mt-6 gap-6">
-                    <Card>
-                        <div className="h-28" />
-                    </Card>
-                    <Card>
-                        <div className="h-28" />
-                    </Card>
-                </Grid>
-            </Card>
+            <h1 className="font-bold">Candidate Name</h1>
+            <div className="flex ">
+                <h5 className="text-xs w-32">Republican Party</h5>
+                <h5 className="text-xs italic">Challenger</h5>
+            </div>
+            <h5 className="text-xs">Election Cycles: 1985, 2016, 2020, 2024</h5>
+
         </div>
     )
 }

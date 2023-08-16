@@ -63,8 +63,8 @@ export default function Search() {
     ]
     function handleInputChange(e) {
         const searchInput = e.target.value;
-            setInput(searchInput)
-        
+        setInput(searchInput)
+
         console.log(e.target.value)
     }
 
@@ -88,7 +88,7 @@ export default function Search() {
             <div className="border-2 bg-gray-200 border-black h-96 w-80 rounded-md shadow-lg">
                 <div className="h-full p-2 rounded-md">
                     <ul className="">
-                        {searchResult.length==0 && <div>No results</div>}
+                        {searchResult.length == 0 && <div>No results</div>}
                         {searchResult.filter(cand => {
                             return cand.office_sought === "P"
                         }).map(p => {
