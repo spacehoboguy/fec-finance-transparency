@@ -1,20 +1,29 @@
 import axios from "axios";
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import LoadingSpinner from "./LoadingSpinner";
 
 
 export default function Search() {
     const [input, setInput] = useState("")
     const [searchResult, setSearchResult] = useState([])
+    const [filteredResult, setFilteredResult] = useState([])
+    const [status, setStatus] = useState("")
+    const [isLoading, setIsLoading] = useState(false);
     const APIKEY = import.meta.env.VITE_API_KEY;
     const url = 'https://api.open.fec.gov/v1/names/candidates/?q=' + input + '&api_key=' + APIKEY;
     const controller = new AbortController();
 
     useEffect(() => {
+        setIsLoading(true)
         axios.get(url, {
             signal: controller.signal
         }).then((res) => {
+            setIsLoading(false)
             res.data && setSearchResult(res.data.results);
+            setFilteredResult(searchResult.filter(cand => {
+                    return cand.office_sought === "P"})
+                )
         }).catch((err) => {
             if (err.response) {
                 console.log(err.response.data);
@@ -30,7 +39,7 @@ export default function Search() {
             controller.abort();
         }
     }, [url])
-    console.log(searchResult)
+    console.log(filteredResult)
     let results = [
         {
             id: "P80001571",
@@ -70,7 +79,6 @@ export default function Search() {
 
     function handleSubmit(e) {
         e.preventDefault();
-
     }
     return (
         <div className="grid  p-2 place-content-center">
@@ -88,19 +96,20 @@ export default function Search() {
             <div className="border-2 bg-gray-200 border-black h-96 w-80 rounded-md shadow-lg">
                 <div className="h-full p-2 rounded-md">
                     <ul className="">
-                        {searchResult.length == 0 && <div>No results</div>}
-                        {searchResult.filter(cand => {
-                            return cand.office_sought === "P"
-                        }).map(p => {
-                            return (
-                                <li key={p.id} className="text-sm border-2 m-2 bg-white border-black rounded-md hover:bg-slate-950 hover:text-white hover:cursor-pointer active:ring hover:ring-gray-500">
-                                    <Link to={`/candidate/${p.id}`} candId={p.id}>
-                                        <div className="pl-2 font-semibold"> {p.name}</div>
-                                        <div className="pl-2">Candidate ID: {p.id}</div>
-                                    </Link>
-                                </li>
-                            )
-                        })}
+                        {isLoading ? <LoadingSpinner /> : <div>
+                        {filteredResult.length == 0 && <div>No results</div>}
+                            {filteredResult.map(p => {
+                                return (
+                                    <li key={p.id} className="text-sm border-2 m-2 bg-white border-black rounded-md hover:bg-slate-950 hover:text-white hover:cursor-pointer active:ring hover:ring-gray-500">
+                                        <Link to={`/candidate/${p.id}`} candId={p.id}>
+                                            <div className="pl-2 font-semibold"> {p.name}</div>
+                                            <div className="pl-2">Candidate ID: {p.id}</div>
+                                        </Link>
+                                    </li>
+                                )
+                            })
+                            }
+                        </div>}
                     </ul>
                 </div>
             </div>

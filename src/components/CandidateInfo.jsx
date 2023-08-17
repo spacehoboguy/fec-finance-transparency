@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { HiArrowUturnLeft } from "react-icons/hi2"
 import { NavLink, useParams } from "react-router-dom";
 import axios from 'axios';
+import LoadingSpinner from "./LoadingSpinner";
 
 
 function CandidateInfo() {
@@ -13,9 +14,11 @@ function CandidateInfo() {
 
     const controller = new AbortController();
     useEffect(() => {
+        setIsLoading(true)
         axios.get(candidateInfoUrl).then((res) => {
             console.log(res.data.results)
             res.data && setCandidateInfo(res.data.results);
+            setIsLoading(false)
 
         }).catch((err) => {
 
@@ -41,7 +44,7 @@ function CandidateInfo() {
                 <HiArrowUturnLeft />
             </NavLink>
 
-            {candidateInfo.length==0?<p>Error</p>: (
+            {candidateInfo==0?<LoadingSpinner/>: (
 
             <div>
                 <h1 className="font-bold">{candidateInfo[0].name}</h1>
