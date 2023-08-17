@@ -30,7 +30,7 @@ export default function Search() {
             controller.abort();
         }
     }, [url])
-
+    console.log(searchResult)
     let results = [
         {
             id: "P80001571",

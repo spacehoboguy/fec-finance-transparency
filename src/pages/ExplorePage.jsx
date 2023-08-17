@@ -10,9 +10,9 @@ export default function ExplorePage() {
         <div className="w-1 h-10 bg-black"></div>
         <h1 className=" text-black text-3xl font-bold tracking-wider">Explore</h1>
       </div>
-        <NavLink className="absolute top-0" to="/">
-          <HiMiniHome/>
-        </NavLink>
+      <NavLink className="absolute top-0" to="/">
+        <HiMiniHome />
+      </NavLink>
       <main className="grid">
         <Search />
       </main>
