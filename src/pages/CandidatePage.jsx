@@ -5,7 +5,7 @@ import { HiArrowUturnLeft } from "react-icons/hi2";
 import CandidateInfo from '../components/CandidateInfo';
 
 export default function CandidatePage() {
-    const { candId } = useParams();
+    // const { candId } = useParams();
     const [candidateInfo, setCandidateInfo] = useState([]);
     const [financialSummary, setFinancialSummary] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -27,9 +27,9 @@ export default function CandidatePage() {
     //             //setIsLoading(false); 
     //         }))
     // }
-   
 
-    
+
+
     // useEffect(() => {
     //     const controller = new AbortController();
     //     const url = 'https://api.open.fec.gov/v1/candidate/' + candId + '/?page=1&per_page=20&office=P&sort=name&sort_hide_null=false&sort_null_only=false&sort_nulls_last=false&api_key=' + APIKEY;
@@ -54,8 +54,8 @@ export default function CandidatePage() {
     // }, [candId])
     return (
         <>
-        <CandidateInfo />
-        {/*             
+            <CandidateInfo />
+            {/*             
         <div>
             <div>Cash on hand: ${financialSummary[0].cash_on_hand_end}</div>
         </div> */}
