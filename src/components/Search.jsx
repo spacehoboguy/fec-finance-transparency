@@ -25,6 +25,8 @@ export default function Search() {
                     return cand.office_sought === "P"})
                 )
         }).catch((err) => {
+            setIsLoading(false)
+
             if (err.response) {
                 console.log(err.response.data);
                 console.log(err.response.status);
