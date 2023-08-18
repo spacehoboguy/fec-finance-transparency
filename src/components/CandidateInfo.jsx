@@ -21,7 +21,7 @@ function CandidateInfo() {
             setIsLoading(false)
 
         }).catch((err) => {
-
+            setIsLoading(false);
             if (err.response) {
                 console.log(err.response.data);
                 console.log(err.response.status);
@@ -39,28 +39,21 @@ function CandidateInfo() {
 
     return (
         <>
-
-            <NavLink className="top-0" to="/explore">
-                <HiArrowUturnLeft />
-            </NavLink>
-
-            {candidateInfo==0?<LoadingSpinner/>: (
-
-            <div>
-                <h1 className="font-bold">{candidateInfo[0].name}</h1>
-                <div className='text-xs italic'>{candidateInfo[0].candidate_id}</div>
-                <div className="flex ">
-                    <h5 className="text-xs w-32">{candidateInfo[0].party_full}</h5>
-                    <h5 className="text-xs italic">{candidateInfo[0].incumbent_challenge_full}</h5>
+            {candidateInfo == 0 ? <LoadingSpinner /> : (
+                <div>
+                    <h1 className="font-bold">{candidateInfo[0].name}</h1>
+                    <div className='text-xs italic'>{candidateInfo[0].candidate_id}</div>
+                    <div className="flex ">
+                        <h5 className="text-xs w-32">{candidateInfo[0].party_full}</h5>
+                        <h5 className="text-xs italic">{candidateInfo[0].incumbent_challenge_full}</h5>
+                    </div>
+                    <h5 className="text-xs">Election Cycles: </h5>
+                    {
+                        candidateInfo[0].election_years.map((value, index) =>
+                            <li className="list-none text-xs" key={index}>{value}</li>)
+                    }
                 </div>
-                <h5 className="text-xs">Election Cycles: </h5>
-                {
-                    candidateInfo[0].election_years.map((value, index) =>
-                        <li className="list-none text-xs" key={index}>{value}</li>)
-                }
-            </div>
             )}
-
         </>
     )
 }
