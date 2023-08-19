@@ -87,7 +87,7 @@ export default function Search() {
             <form className="" onSubmit={handleSubmit}>
                 <label className="appearance-none shadow-lg " name="search">
                     <input
-                        className="outline-none w-80 mb-10 bg-white border-black border-2 rounded-md hover:ring hover:ring-gray-500 focus:ring focus:ring-gray-300 focus:placeholder-transparent"
+                        className="outline-none w-80 mb-10 bg-white border-black border-2 rounded-md hover:ring hover:ring-gray-300 active:ring-gray-400 focus:ring focus:ring-gray-300 focus:placeholder-transparent"
                         type="text"
                         value={input}
                         placeholder=" Search by name"
