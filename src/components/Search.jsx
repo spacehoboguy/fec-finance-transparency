@@ -2,16 +2,18 @@ import axios from "axios";
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import LoadingSpinner from "./LoadingSpinner";
+import useDebounce from "../hooks/useDebounce";
 
 
 export default function Search() {
     const [input, setInput] = useState("")
+    const debouncedSearchValue = useDebounce(input, 500)
     const [searchResult, setSearchResult] = useState([])
     const [filteredResult, setFilteredResult] = useState([])
-    const [status, setStatus] = useState("")
+    //const [status, setStatus] = useState("")
     const [isLoading, setIsLoading] = useState(false);
     const APIKEY = import.meta.env.VITE_API_KEY;
-    const url = 'https://api.open.fec.gov/v1/names/candidates/?q=' + input + '&api_key=' + APIKEY;
+    const url = 'https://api.open.fec.gov/v1/names/candidates/?q=' + debouncedSearchValue + '&api_key=' + APIKEY;
     const controller = new AbortController();
 
     useEffect(() => {
@@ -41,42 +43,11 @@ export default function Search() {
             controller.abort();
         }
     }, [url])
-    console.log(filteredResult)
-    let results = [
-        {
-            id: "P80001571",
-            name: "TRUMP, DONALD J.",
-            office_sought: "P"
-        },
-        {
-            id: "H6AK00045",
-            name: "YOUNG, DONALD E",
-            office_sought: "H"
-        },
-        {
-            id: "H6NE02125",
-            name: "BACON, DONALD J",
-            office_sought: "H"
-        },
-        {
-            id: "S0OK00107",
-            name: "NICKLES, DONALD LEE",
-            office_sought: "S"
-        },
-        {
-            id: "H4VA08224",
-            name: "BEYER, DONALD STERNOFF JR.",
-            office_sought: "P"
-        },
-        {
-            id: "H4NJ01084",
-            name: "NORCROSS, DONALD W",
-            office_sought: "H"
-        }
-    ]
+    
+    
     function handleInputChange(e) {
-        let searchInput = e.target.value;
-        setInput(searchInput)
+        let searchTerm = e.target.value;
+        setInput(searchTerm)
     }
 
     function handleSubmit(e) {
