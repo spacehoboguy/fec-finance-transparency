@@ -18,14 +18,17 @@ export default function Search() {
 
     useEffect(() => {
         setIsLoading(true)
+
         axios.get(url, {
             signal: controller.signal
         }).then((res) => {
             setIsLoading(false)
+
             res.data && setSearchResult(res.data.results);
             setFilteredResult(searchResult.filter(cand => {
-                    return cand.office_sought === "P"})
-                )
+                return cand.office_sought === "P"
+            })
+            )
         }).catch((err) => {
             setIsLoading(false)
 
@@ -39,12 +42,13 @@ export default function Search() {
                 console.log('Error', err.message);
             }
         })
+
         return () => {
             controller.abort();
         }
     }, [url])
-    
-    
+
+
     function handleInputChange(e) {
         let searchTerm = e.target.value;
         setInput(searchTerm)
@@ -55,22 +59,21 @@ export default function Search() {
     }
     return (
         <div className="grid  p-2 place-content-center">
-            <form className="" onSubmit={handleSubmit}>
-                <label className="appearance-none shadow-lg " name="search">
-                    <input
-                        className="outline-none w-80 mb-10 bg-white border-black border-2 rounded-md hover:ring hover:ring-gray-300 active:ring-gray-400 focus:ring focus:ring-gray-300 focus:placeholder-transparent"
-                        type="text"
-                        value={input}
-                        placeholder=" Search by name"
-                        onChange={handleInputChange}
-                    />
-                </label>
-            </form>
+
+            <input
+                className="outline-none w-80 mb-10 bg-white border-black border-2 rounded-md hover:ring hover:ring-gray-300 active:ring-gray-400 focus:ring focus:ring-gray-300 focus:placeholder-transparent"
+                type="text"
+                value={input}
+                placeholder=" Search by name"
+                onChange={handleInputChange}
+            />
+
+
             <div className="border-2 bg-gray-200 border-black h-96 w-80 rounded-md shadow-lg">
                 <div className="h-full p-2 rounded-md">
                     <ul className="">
                         {isLoading ? <LoadingSpinner /> : <div>
-                        {filteredResult.length == 0 && <div>No results</div>}
+                            {filteredResult.length == 0 && <div>No results</div>}
                             {filteredResult.map(p => {
                                 return (
                                     <li key={p.id} className="text-sm border-2 m-2 bg-white border-black rounded-md hover:bg-slate-950 hover:text-white hover:cursor-pointer active:ring hover:ring-gray-500">
