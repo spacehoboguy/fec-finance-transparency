@@ -9,37 +9,13 @@ function CandidateInfo() {
     const { candId } = useParams();
     const APIKEY = import.meta.env.VITE_API_KEY;
     const [candidateInfo, setCandidateInfo] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+   
     const candidateInfoUrl = 'https://api.open.fec.gov/v1/candidate/' + candId + '/?page=1&per_page=20&office=P&sort=name&sort_hide_null=false&sort_null_only=false&sort_nulls_last=false&api_key=' + APIKEY;
-
-    const controller = new AbortController();
-    useEffect(() => {
-        setIsLoading(true)
-        axios.get(candidateInfoUrl).then((res) => {
-            console.log(res.data.results)
-            res.data && setCandidateInfo(res.data.results);
-            setIsLoading(false)
-
-        }).catch((err) => {
-            setIsLoading(false);
-            if (err.response) {
-                console.log(err.response.data);
-                console.log(err.response.status);
-                console.log(err.response.headers);
-            } else if (err.request) {
-                console.log(err.request);
-            } else {
-                console.log('Error', err.message);
-            }
-        })
-        return () => {
-        }
-    }, [candId])
-
+    const {data, isLoading} = useFetch(candidateInfoUrl)
 
     return (
         <>
-            {candidateInfo == 0 ? <LoadingSpinner /> : (
+            {data == 0 ? <LoadingSpinner /> : (
                 <div>
                     <h1 className="font-bold">{candidateInfo[0].name}</h1>
                     <div className='text-xs italic'>{candidateInfo[0].candidate_id}</div>

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import ExplorePage from "./ExplorePage";
-import useGet from "../hooks/useGet";
+
 
 
 export default function LandingPage() {
