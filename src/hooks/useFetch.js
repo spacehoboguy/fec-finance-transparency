@@ -3,19 +3,19 @@ import axios from 'axios';
 
 function useFetch(url) {
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useEffect(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const controller = new AbortController();
-
+  
   useEffect(() => {
+    console.log('fetched')
     setIsLoading(true)
-
     axios
       .get(url, {
         signal: controller.signal
       })
       .then((res) => {
         setIsLoading(false)
-
         res.data && setData(res.data.results);
       })
       .catch((err) => {
@@ -28,6 +28,7 @@ function useFetch(url) {
         } else if (err.request) {
           console.log(err.request);
         } else {
+          setError(err.message)
           console.log('Error', err.message);
         }
       })
@@ -36,7 +37,6 @@ function useFetch(url) {
       controller.abort();
     }
   }, [url])
-
-  return { data, isLoading }
+  return { data, isLoading, error }
 }
 export default useFetch;
