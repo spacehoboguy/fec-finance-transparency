@@ -8,28 +8,27 @@ function useFetch(url) {
   const controller = new AbortController();
   
   useEffect(() => {
-    console.log('fetched')
+    if(!url) {
+      setIsLoading(false)
+      return;
+    }
+    console.log('fetched') // console log
+    
     setIsLoading(true)
     axios
       .get(url, {
         signal: controller.signal
       })
       .then((res) => {
-        setIsLoading(false)
-        res.data && setData(res.data.results);
+        setIsLoading(false);
+        if (!controller.signal.aborted) {
+          setData(res.data.results);
+        }
       })
       .catch((err) => {
-        setIsLoading(false)
-
-        if (err.response) {
-          console.log(err.response.data);
-          console.log(err.response.status);
-          console.log(err.response.headers);
-        } else if (err.request) {
-          console.log(err.request);
-        } else {
-          setError(err.message)
-          console.log('Error', err.message);
+        setIsLoading(false);
+        if (controller.signal.aborted) {
+          setError(err);
         }
       })
 
