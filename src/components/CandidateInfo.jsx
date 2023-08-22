@@ -10,7 +10,8 @@ function CandidateInfo() {
     const { candId } = useParams();
     const APIKEY = import.meta.env.VITE_API_KEY;
     const [candidateInfo, setCandidateInfo] = useState();
-    const candidateInfoUrl = 'https://api.open.fec.gov/v1/candidate/' + candId + '/?page=1&per_page=20&office=P&sort=name&sort_hide_null=false&sort_null_only=false&sort_nulls_last=false&api_key=' + APIKEY;
+    const candidateInfoUrl = 
+    'https://api.open.fec.gov/v1/candidate/' + candId + '/?page=1&per_page=20&office=P&sort=name&sort_hide_null=false&sort_null_only=false&sort_nulls_last=false&api_key=' + APIKEY;
     const { data, isLoading, error } = useFetch(candidateInfoUrl)
 
     console.log()
@@ -20,7 +21,9 @@ function CandidateInfo() {
 
     return (
         <>
-            {isLoading ? <LoadingSpinner /> : (
+        <div>CandidateInfo</div>
+        <div>{candId}</div>
+            {/* {isLoading ? <LoadingSpinner /> : (
                 <div>
                     <h1 className="font-bold">{candidateInfo.name}</h1>
                     <div className='text-xs italic'>{candidateInfo.candidate_id}</div>
@@ -35,7 +38,7 @@ function CandidateInfo() {
                     ) : <div>No election years avalible</div>
                     }
                 </div>
-            )}
+            )} */}
         </>
     )
 }

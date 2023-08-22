@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
-import { useParams, NavLink } from 'react-router-dom';
-import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 import { HiArrowUturnLeft } from "react-icons/hi2";
 import CandidateInfo from '../components/CandidateInfo';
 import CandidateFinancialinfo from '../components/CandidateFinancialinfo';
@@ -15,7 +13,6 @@ export default function CandidatePage() {
 
             <CandidateInfo />
             <CandidateFinancialinfo />
-
         </>
     )
 }
