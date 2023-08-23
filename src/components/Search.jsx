@@ -43,7 +43,7 @@ export default function Search() {
     return (
         <div className="grid  p-2 place-content-center">
             <SearchInput handleInput={handleInput} handleKeyDown={handleKeyDown} input={input}/>
-            <div className="border-2 bg-gray-200 border-black h-96 w-80 rounded-md shadow-lg">
+            <div className=" bg-gray-200  h-96 w-80 rounded-md shadow-lg">
                 <div className="h-full p-2 rounded-md">
                     <ul className="">
                         {isLoading ? <LoadingSpinner /> : <div>
@@ -63,7 +63,7 @@ export default function Search() {
 }
 function SearchListItem({ candId, candName }) {
     return (
-        <li className="text-sm border-2 m-2 bg-white border-black rounded-md hover:bg-slate-950 hover:text-white hover:cursor-pointer active:ring hover:ring-gray-500">
+        <li className="text-sm  m-2 shadow-md text-white bg-zinc-900 border-black rounded-md hover:bg-zinc-700 hover:text-white hover:cursor-pointer active:ring hover:ring-1 hover:ring-gray-500">
             <Link to={`/candidate/${candId}`} >
                 <div className="pl-2 font-semibold"> {candName}</div>
                 <div className="pl-2">Candidate ID: {candId}</div>
@@ -75,7 +75,7 @@ function SearchListItem({ candId, candName }) {
 function SearchInput({input, handleInput, handleKeyDown}) {
     return (
         <input
-        className="outline-none w-80 mb-10 bg-white border-black border-2 rounded-md hover:ring hover:ring-gray-300 active:ring-gray-400 focus:ring focus:ring-gray-300 focus:placeholder-transparent"
+        className="outline-none w-80 mb-10 text-white bg-zinc-900 text-center hover:bg-zinc-600 placeholder:text-white rounded-md active:ring-gray-400 focus:ring focus:ring-gray-300 focus:placeholder-transparent"
         type="text"
         value={input}
         placeholder=" Search by name"

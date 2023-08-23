@@ -3,10 +3,10 @@ import { HiMiniHome } from "react-icons/hi2"
 
 function About() {
   return (
-    <div className="box-border h-screen w-screen ">
+    <div className="box-border h-screen w-screen bg-zinc-300">
       <div className="relative grid place-content-center">
-        <div className="w-1 h-10 bg-black"></div>
-        <h1 className=" text-black text-3xl font-bold tracking-wider">About</h1>
+        <div className="w-1 h-10 bg-red-600"></div>
+        <h1 className=" text-red-600 text-3xl font-bold tracking-wider">About</h1>
       </div>
       <NavLink className="absolute top-0" to="/">
         <HiMiniHome />
@@ -24,10 +24,10 @@ function About() {
         <p className="px-60 pt-2 font-semibold">
           This site uses data fetched from the open source API openFEC.
           The Federal Election Commission (FEC) API is a RESTful web service supporting full-text and field-specific searches on FEC data.
-          Data is updated nightly. <br/>
+          Data is updated nightly. <br />
           <i className="font-light">
-          Read more on <a className="hover:underline"href="https://api.open.fec.gov/developers/">https://api.open.fec.gov/developers/</a>
-            </i>
+            Read more on <a className="hover:underline" href="https://api.open.fec.gov/developers/">https://api.open.fec.gov/developers/</a>
+          </i>
         </p>
 
       </div>
