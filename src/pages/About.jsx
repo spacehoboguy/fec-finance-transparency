@@ -3,8 +3,8 @@ import { HiMiniHome } from "react-icons/hi2"
 
 function About() {
   return (
-    <div className="box-border h-screen w-screen bg-zinc-300">
-      <div className="relative grid place-content-center">
+    <div className="box-border h-screen w-screen">
+      <div className="relative grid place-content-center bg-zinc-300 shadow-sm">
         <div className="w-1 h-10 bg-red-600"></div>
         <h1 className=" text-red-600 text-3xl font-bold tracking-wider">About</h1>
       </div>
