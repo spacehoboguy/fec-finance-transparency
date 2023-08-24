@@ -12,7 +12,7 @@ export default function CandidatePage() {
             </NavLink>
 
             <CandidateInfo />
-            <CandidateFinancialinfo />
+            {/* <CandidateFinancialinfo /> */}
         </>
     )
 }

@@ -18,8 +18,7 @@ function CandidateFinancialinfo() {
     useEffect(() => {
         setCanFinTot(data)
     }, [data])
-    console.log(canFinTot)
-    console.log(candId)
+   
     return (
         <div>Finance section coming soon
             <div>

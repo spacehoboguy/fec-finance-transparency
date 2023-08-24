@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { HiArrowUturnLeft } from "react-icons/hi2"
 import { NavLink, useParams } from "react-router-dom";
-import axios from 'axios';
 import LoadingSpinner from "./LoadingSpinner";
 import useFetch from "../hooks/useFetch";
 
@@ -9,22 +8,29 @@ import useFetch from "../hooks/useFetch";
 function CandidateInfo() {
     const { candId } = useParams();
     const APIKEY = import.meta.env.VITE_API_KEY;
-    const [candidateInfo, setCandidateInfo] = useState();
-    const candidateInfoUrl = 
-    'https://api.open.fec.gov/v1/candidate/' + candId + '/?page=1&per_page=20&office=P&sort=name&sort_hide_null=false&sort_null_only=false&sort_nulls_last=false&api_key=' + APIKEY;
+    const candidateInfoUrl =
+    'https://api.open.fec.gov/v1/candidate/'
+    + candId
+    + '/?page=1&per_page=20&office=P&sort=name&sort_hide_null=false&sort_null_only=false&sort_nulls_last=false&api_key='
+    + APIKEY;
+    const [candidateInfo, setCandidateInfo] = useState(null);
     const { data, isLoading, error } = useFetch(candidateInfoUrl)
-
-    console.log()
+    
     useEffect(() => {
-        setCandidateInfo(data[0])
-    }, [data])
+        if (data && data.length > 0) {
+            setCandidateInfo(data[0])
+        } else {
+            setCandidateInfo(null)
+        }
+    }, [candidateInfo, data])
 
+    
     return (
         <>
-        <div>CandidateInfo</div>
-        <div>{candId}</div>
-            {/* {isLoading ? <LoadingSpinner /> : (
-                <div>
+            <div>{candId}</div>
+            {isLoading ? <LoadingSpinner /> : (
+                candidateInfo !== null ? (
+                     <div>
                     <h1 className="font-bold">{candidateInfo.name}</h1>
                     <div className='text-xs italic'>{candidateInfo.candidate_id}</div>
                     <div className="flex ">
@@ -38,7 +44,10 @@ function CandidateInfo() {
                     ) : <div>No election years avalible</div>
                     }
                 </div>
-            )} */}
+                ) : (
+                    <div>Data not avalible</div>
+                )
+            )}
         </>
     )
 }

@@ -47,7 +47,7 @@ export default function Search() {
                 <div className="h-full p-2 rounded-md">
                     <ul className="">
                         {isLoading ? <LoadingSpinner /> : <div>
-                            {filteredResult.length === 0 && isEnterPressed && (<div>No results</div>)}
+                            { isEnterPressed && filteredResult.length === 0 && (<div>No results</div>)}
                             {filteredResult.map(({ id, name }) => {
                                 return (
                                     <SearchListItem key={id} candId={id} candName={name} />
