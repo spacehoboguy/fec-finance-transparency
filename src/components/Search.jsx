@@ -20,7 +20,6 @@ export default function Search() {
             + APIKEY
             : null;
     const { data, isLoading, error } = useFetch(url);
-
     useEffect(() => {
         if (data && data.length > 0) {
             setFilteredResult(data.filter((cand) => cand.office_sought === "P"));

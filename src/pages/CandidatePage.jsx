@@ -43,7 +43,6 @@ export default function CandidatePage() {
                 setErrorCandInfo(err);
             })
     }, [candId])
-
     useEffect(() => { // fetch candidate financials
         setIsFinTotLoading(true)
         axios
