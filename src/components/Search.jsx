@@ -41,13 +41,13 @@ export default function Search() {
     }
 
     return (
-        <div className="grid  p-2 place-content-center">
+        <div className="grid p-2 place-content-center">
             <SearchInput handleInput={handleInput} handleKeyDown={handleKeyDown} input={input}/>
-            <div className=" bg-gray-200  h-96 w-80 rounded-md shadow-lg">
+            <div className=" bg-gray-200  h-fit w-80 rounded-md shadow-lg">
                 <div className="h-full p-2 rounded-md">
                     <ul className="">
-                        {isLoading ? <LoadingSpinner /> : <div>
-                            { isEnterPressed && filteredResult.length === 0 && (<div>No results</div>)}
+                        {isLoading ? <LoadingSpinner className=""/> : <div>
+                            {filteredResult.length === 0 && (<div>No results</div>)}
                             {filteredResult.map(({ id, name }) => {
                                 return (
                                     <SearchListItem key={id} candId={id} candName={name} />
@@ -63,7 +63,7 @@ export default function Search() {
 }
 function SearchListItem({ candId, candName }) {
     return (
-        <li className="text-sm  m-2 shadow-md text-white bg-zinc-900 border-black rounded-md hover:bg-zinc-700 hover:text-white hover:cursor-pointer active:ring hover:ring-1 hover:ring-gray-500">
+        <li className="text-sm  m-2 shadow-md text-white bg-zinc-900 border-black rounded-md hover:bg-zinc-700 hover:text-white hover:cursor-pointer active:ring ">
             <Link to={`/candidate/${candId}`} >
                 <div className="pl-2 font-semibold"> {candName}</div>
                 <div className="pl-2">Candidate ID: {candId}</div>

@@ -8,6 +8,7 @@ function useFetch(url) {
   const controller = new AbortController();
   
   useEffect(() => {
+    console.log(url)
     if(!url) {
       setIsLoading(false)
       return;

@@ -6,12 +6,12 @@ function About() {
     <div className="box-border h-screen w-screen">
       <div className="relative grid place-content-center bg-zinc-300 shadow-sm">
         <div className="w-1 h-10 bg-red-600"></div>
-        <h1 className=" text-red-600 text-3xl font-bold tracking-wider">About</h1>
+        <h1 className=" text-red-600 text-3xl pb-2 font-bold tracking-wider">About</h1>
       </div>
       <NavLink className="absolute top-0" to="/">
         <HiMiniHome />
       </NavLink>
-      <div className="grid place-content-center pb-5">
+      <div className="grid place-content-center pb-5 bg-white">
         <h2 className="text-center text-lg font-bold pt-10">openPRES</h2>
         <p className="px-60 pb-10 pt-2 font-semibold">
           Our goal is to make browsing and viewing data on United States presidential candidates simple.
