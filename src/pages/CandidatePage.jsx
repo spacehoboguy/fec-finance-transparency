@@ -4,6 +4,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { HiArrowUturnLeft } from "react-icons/hi2";
 import CandidateInfo from '../components/CandidateInfo';
 import CandidateFinancialinfo from '../components/CandidateFinancialinfo';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 export default function CandidatePage() {
     const { candId } = useParams();
@@ -18,12 +19,12 @@ export default function CandidatePage() {
     const [candidateInfo, setCandidateInfo] = useState(null)
     const [isInfoLoading, setIsInfoLoading] = useState(false);
     const [errorCandInfo, setErrorCandInfo] = useState();
-    
+
     const canFinTotUrl = //candidate total financial information
-    'https://api.open.fec.gov/v1/candidate/'
-    + candId
-    + '/totals/?page=1&per_page=20&election_full=true&sort=-cycle&sort_hide_null=false&sort_null_only=false&sort_nulls_last=false&api_key='
-    + APIKEY;
+        'https://api.open.fec.gov/v1/candidate/'
+        + candId
+        + '/totals/?page=1&per_page=20&election_full=true&sort=-cycle&sort_hide_null=false&sort_null_only=false&sort_nulls_last=false&api_key='
+        + APIKEY;
     const [canFinTot, setCanFinTot] = useState(null);
     const [isFinTotLoading, setIsFinTotLoading] = useState(false)
     const [errorFinTot, setErrorFinTot] = useState();
@@ -35,29 +36,28 @@ export default function CandidatePage() {
             .then((res) => {
                 setIsInfoLoading(false);
                 setCandidateInfo(res.data.results[0]);
-                setCandidateParty(res.data.results[0].party)
+                setCandidateParty(res.data.results[0].party) // setting party
 
             })
             .catch((err) => {
                 setIsInfoLoading(false);
                 setErrorCandInfo(err);
             })
-    }, [candId])
+    }, [candInfoUrl])
     useEffect(() => { // fetch candidate financials
         setIsFinTotLoading(true)
         axios
             .get(canFinTotUrl)
             .then((res) => {
                 setIsFinTotLoading(false);
-                setCanFinTot(res.data.results);
-
+                res.data && setCanFinTot(res.data.results);
             })
             .catch((err) => {
                 setIsFinTotLoading(false);
                 setErrorFinTot(err);
             })
-    }, [candId])
- 
+    }, [canFinTotUrl])
+
     return (
         <>
             <NavLink className="top-0" to="/explore">
@@ -65,7 +65,14 @@ export default function CandidatePage() {
             </NavLink>
 
             <CandidateInfo data={candidateInfo} isLoading={isInfoLoading} error={errorCandInfo} party={candidateParty} />
-            <CandidateFinancialinfo data={canFinTot} isLoading={isFinTotLoading} error={errorFinTot}party={candidateParty} />
+            {!canFinTot
+                ? <p>no data</p>
+                : <CandidateFinancialinfo 
+                data={canFinTot} 
+                isLoading={isFinTotLoading} 
+                error={errorFinTot} 
+                party={candidateParty} />
+            }
         </>
     )
 }

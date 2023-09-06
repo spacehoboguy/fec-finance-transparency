@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import LoadingSpinner from "./LoadingSpinner";
 import useDebounce from "../hooks/useDebounce";
 import useFetch from "../hooks/useFetch";
+import { PiUserListFill } from "react-icons/pi";
 
 
 export default function Search() {
@@ -46,7 +47,11 @@ export default function Search() {
                 <div className="h-full p-2 rounded-md">
                     <ul className="">
                         {isLoading ? <LoadingSpinner className=""/> : <div>
-                            {filteredResult.length === 0 && (<div>No results</div>)}
+                            {filteredResult.length === 0 && (
+                        <div className="grid place-content-center py-1">
+                            <PiUserListFill/>
+                        </div>
+                            )}
                             {filteredResult.map(({ id, name }) => {
                                 return (
                                     <SearchListItem key={id} candId={id} candName={name} />

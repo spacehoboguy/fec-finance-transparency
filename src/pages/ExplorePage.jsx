@@ -7,7 +7,7 @@ export default function ExplorePage() {
   return (
     <div className="box-border">
       <div className="relative grid place-content-center">
-        <div className="w-1 h-10 bg-black"></div>
+        <div className="w-1 h-16 bg-black"></div>
         <h1 className=" text-black text-3xl font-bold tracking-wider">Explore</h1>
       </div>
       <NavLink className="absolute top-0" to="/">

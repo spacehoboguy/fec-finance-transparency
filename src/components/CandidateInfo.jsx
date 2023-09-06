@@ -10,7 +10,7 @@ function CandidateInfo({ data, isLoading, error, party }) {
                     <div className="flex-col py-3">
                         <div className="m-5 p-3 w-fit bg-white rounded-md">
                             <div className="z-10">
-                                <h1 className="font-bold">{data.name}</h1>
+                                <h1 className="font-bold">{data[0].name}</h1>
                                 <div className='text-xs italic'>{data.candidate_id}</div>
                                 <div className="flex">
                                     <h5 className="text-xs w-32">{data.party_full}</h5>

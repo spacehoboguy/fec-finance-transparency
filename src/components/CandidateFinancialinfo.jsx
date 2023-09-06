@@ -1,17 +1,36 @@
 import { Tab, TabGroup, TabList, TabPanel, TabPanels, Flex, Text } from "@tremor/react";
+import LoadingSpinner from "./LoadingSpinner";
 
-function CandidateFinancialinfo({ data, isLoading, error }) {
-    console.log(data)
+function CandidateFinancialinfo({ data, isLoading, error, party }) {
+    //console.log('data:', data)
 
-    return (<>
-        <div>Heihei</div>
-        {/* <ul>
-            {data.map(({years}) => {
-                <li key={index}>{years}</li>
-            })}
-        </ul> */}
-    </>
+    return (
+        <>
+            <div>Your party is {party}</div>
+            {isLoading
+                ? <p>Loading..</p>
+                : <DisplayYears data={data} />
+            }
+        </>
     )
+
+    function DisplayYears({ data }) { //display each object
+        console.log('data in df', data)
+        return (
+            <>
+                <div>
+                    {data.map((item, index) => {
+                        return (
+                            <p
+                                key={index}>
+                                {item.candidate_election_year}
+                            </p>)
+                    })}
+                </div>
+            </>
+        )
+    }
+
     // return (
     //     <div>{isLoading ? <p>Loading...</p> : (
     //         <TabGroup defaultIndex={1} className="m-5">
